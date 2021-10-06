@@ -14,7 +14,13 @@
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
               <!-- Navbar title -->
-              <a class="navbar-brand" href="#">Movies</a>
+              <a class="navbar-brand" href="#"
+                >Movies
+
+                <span class="material-icons-outlined align-middle">
+                  movie
+                </span>
+              </a>
               <!-- Navbar responsive button -->
               <!-- <button
                 class="navbar-toggler"
@@ -54,7 +60,9 @@
             data-bs-toggle="modal"
             data-bs-target="#newMovie"
           >
-            New movie
+            <span class="align-middle"> Movie </span>
+
+            <span class="material-icons-outlined align-middle"> add </span>
           </button>
         </div>
         <div class="col"></div>
@@ -73,7 +81,7 @@
                     alt="Movie image"
                   />
                   <div class="card-body">
-                    <h5 class="card-title">The movie title</h5>
+                    <h5 class="card-title text-center">The movie title</h5>
 
                     <p class="card-text">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -86,11 +94,36 @@
                       culpa cumque eligendi!
                     </p>
 
-                    <div>Rate: <span>*****</span></div>
+                    <div class="mb-3">
+                      <span class="align-middle">Rate: </span>
+                      <span class="material-icons-outlined align-middle">
+                        star
+                      </span>
+                      <span class="material-icons-outlined align-middle">
+                        star
+                      </span>
+                      <span class="material-icons-outlined align-middle">
+                        star_outline
+                      </span>
+                      <span class="material-icons-outlined align-middle">
+                        star_outline
+                      </span>
+                      <span class="material-icons-outlined align-middle">
+                        star_outline
+                      </span>
+                    </div>
 
                     <div class="float-end">
-                      <a href="#" class="btn btn-dark">Edit</a>
-                      <a href="#" class="btn btn-outline-dark">Delete</a>
+                      <a href="#" class="btn btn-dark">
+                        <span class="material-icons-outlined align-middle">
+                          edit
+                        </span></a
+                      >
+                      <a href="#" class="btn btn-outline-dark">
+                        <span class="material-icons-outlined align-middle">
+                          delete
+                        </span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -124,13 +157,6 @@
           <div class="modal-body">Here should be the form</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-dark">Add</button>
-            <button
-              type="button"
-              class="btn btn-outline-dark"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
           </div>
         </div>
       </div>
