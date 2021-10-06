@@ -53,8 +53,7 @@
             type="button"
             class="btn btn-dark btn-lg"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            data-bs-whatever="@mdo"
+            data-bs-target="#newMovie"
           >
             New movie
           </button>
@@ -89,6 +88,40 @@
         </div>
       </div>
       <!-- More content here -->
+    </div>
+
+    <!-- Add new movie modal -->
+    <div
+      class="modal fade"
+      id="newMovie"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New movie</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Here should be the form</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark">Add</button>
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
