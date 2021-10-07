@@ -27,14 +27,14 @@ export default class MovieModel {
     this.#description = description;
     this.#rate = rate;
 
-    this.notify();
+    this.#notify();
   }
 
   attach(observerObj) {
     this.#movieModelObservers = [...this.#movieModelObservers, observerObj];
   }
 
-  notify() {
+  #notify() {
     // Tell the MovieViewModel that the MovieModel has changed
     this.#movieModelObservers.forEach((movieModelObserver) =>
       movieModelObserver.update()
