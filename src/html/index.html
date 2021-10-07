@@ -171,7 +171,45 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">Here should be the form</div>
+          <div class="modal-body">
+            <!-- New movie form -->
+            <form>
+              <div class="mb-3">
+                <label for="movieTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" id="movieTitle" />
+              </div>
+              <div class="mb-3">
+                <label for="movieImageURL" class="form-label">Image</label>
+                <input
+                  type="text"
+                  placeholder="URL"
+                  class="form-control"
+                  id="movieImageURL"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="movieDescription" class="form-label"
+                  >Description</label
+                >
+                <textarea
+                  class="form-control"
+                  id="movieDescription"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="movieRate" class="form-label">Rate</label>
+                <input
+                  type="range"
+                  class="form-range"
+                  min="0"
+                  max="5"
+                  id="movieRate"
+                  value="2"
+                />
+              </div>
+            </form>
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-dark">Add</button>
           </div>
