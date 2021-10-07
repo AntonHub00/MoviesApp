@@ -24,7 +24,8 @@ export default class MovieViewModel {
     const newMovie = new MovieModel(id, title, imageURL, description, rate);
     newMovie.attach(this);
 
-    this.movieModelSubjects = [...this.movieModelSubjects, newMovie];
+    // A new item is inserted at the begining.
+    this.movieModelSubjects = [newMovie, ...this.movieModelSubjects];
 
     this.#notify();
   }
