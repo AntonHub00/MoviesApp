@@ -3,7 +3,7 @@
 // - attach(o: Observer): void
 // - notify(): void
 
-export class MovieModel {
+export default class MovieModel {
   #id;
   #title;
   #imageURL;
