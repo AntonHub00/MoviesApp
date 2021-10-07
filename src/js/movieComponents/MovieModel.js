@@ -21,6 +21,16 @@ export default class MovieModel {
     this.#movieModelObservers = [];
   }
 
+  getValues() {
+    return {
+      id: this.#id,
+      title: this.#title,
+      imageURL: this.#imageURL,
+      description: this.#description,
+      rate: this.#rate,
+    };
+  }
+
   updateMovie(title, imageURL, description, rate) {
     this.#title = title;
     this.#imageURL = imageURL;
