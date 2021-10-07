@@ -7,6 +7,7 @@
 // - attach(o: Observer): void
 // - notify(): void
 
+import { v4 as uuidv4 } from "uuid";
 import MovieModel from "./MovieModel";
 
 export default class MovieViewModel {
@@ -19,7 +20,7 @@ export default class MovieViewModel {
 
   addMovie(title, imageURL, description, rate) {
     // Generate id somehow
-    const id = Date();
+    const id = uuidv4();
 
     const newMovie = new MovieModel(id, title, imageURL, description, rate);
     newMovie.attach(this);
