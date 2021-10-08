@@ -60,14 +60,14 @@ export default class MovieViewModel {
   }
 
   #notify() {
-    // Tell the View that the ViewModel has changed
+    // Tell the Views that the ViewModel has changed
     this.#movieViewModelObservers.forEach((movieViewModelObserver) =>
       movieViewModelObserver.update()
     );
   }
 
   update() {
-    // Tell the MovieView that the MovieViewModel has changed
+    // Tell the Views that the MovieViewModel has changed
     this.#notify();
   }
 }

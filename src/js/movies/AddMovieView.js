@@ -3,7 +3,7 @@
 // - update(): void
 
 import * as bootstrap from "bootstrap"; // Bootstrap JS
-import toastNofiticationView from "./ToastNotificationView";
+import MovieToastNotificationComponent from "./components/MovieToastNotificationComponent";
 
 export default class AddMovieView {
   #movieViewModelSubject;
@@ -14,6 +14,7 @@ export default class AddMovieView {
   #rateInput;
   #errorAlert;
   #modal;
+  #toast;
 
   constructor(movieViewModelSubject) {
     this.#movieViewModelSubject = movieViewModelSubject;
@@ -28,6 +29,8 @@ export default class AddMovieView {
     this.#addButton.onclick = () => this.#addMovie();
 
     this.#modal = new bootstrap.Modal(document.getElementById("newMovie"));
+
+    this.#toast = new MovieToastNotificationComponent();
   }
 
   #validInputs() {
@@ -80,8 +83,7 @@ export default class AddMovieView {
   }
 
   #showToastNotification() {
-    const toastNofitication = new toastNofiticationView();
-    toastNofitication.show();
+    this.#toast.show();
   }
 
   update() {

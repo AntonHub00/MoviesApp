@@ -1,6 +1,6 @@
-import MovieCardView from "./MovieCardView";
+import MovieCardComponent from "./components/MovieCardComponent";
 
-export default class MovieCardContainerView {
+export default class CardsView {
   #movieViewModelSubject;
   #cardContainer;
 
@@ -11,10 +11,10 @@ export default class MovieCardContainerView {
   }
 
   #renderCards() {
-    const cardDivClasses = ["col-12", "col-md-6", "col-lg-4", "col-xxl-3"];
-
     // Reset content to render the cards every time the view-model/model state is modified
     this.#cardContainer.innerHTML = "";
+
+    const cardsFragment = new DocumentFragment();
 
     this.#movieViewModelSubject.movieModelSubjects.forEach((movie, index) => {
       // New items are inserted at the begining
@@ -22,22 +22,24 @@ export default class MovieCardContainerView {
 
       const { id, title, imageURL, description, rate } = movie.getValues();
 
-      const cardDiv = document.createElement("div");
-
-      cardDiv.classList.add(...cardDivClasses);
-
-      cardDiv.innerHTML = new MovieCardView(
-        id,
-        title,
-        imageURL,
-        description,
-        rate,
-        isLastInserted
-      ).generate();
-
-      this.#cardContainer.appendChild(cardDiv);
+      cardsFragment.append(
+        new MovieCardComponent(
+          id,
+          title,
+          imageURL,
+          description,
+          rate,
+          isLastInserted,
+          () => console.log("Should edit card"),
+          () => console.log("Should remove card")
+        ).build()
+      );
     });
+
+    this.#cardContainer.appendChild(cardsFragment);
   }
+
+  #deleteCard() {}
 
   update() {
     this.#renderCards();
