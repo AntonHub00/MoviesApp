@@ -45,7 +45,7 @@ export default class MovieViewModel {
     );
 
     if (toUpdateMovie) {
-      toUpdateMovie.updateMovie(id, title, imageURL, description, rate);
+      toUpdateMovie.updateMovie(title, imageURL, description, rate);
       return;
     }
 
