@@ -3,10 +3,8 @@
 // - update(): void
 
 import * as bootstrap from "bootstrap"; // Bootstrap JS
-import MovieToastNotificationComponent from "./components/MovieToastNotificationComponent";
 
-export default class AddMovieView {
-  #movieViewModelSubject;
+export default class MovieModalComponent {
   #addButton;
   #titleInput;
   #imageURLInput;
@@ -14,15 +12,14 @@ export default class AddMovieView {
   #rateInput;
   #errorAlert;
   #modal;
-  #toast;
+  #saveStrategy;
 
-  constructor(movieViewModelSubject) {
-    this.#movieViewModelSubject = movieViewModelSubject;
-
+  constructor() {
     this.#titleInput = document.getElementById("movieTitle");
     this.#imageURLInput = document.getElementById("movieImageURL");
     this.#descriptionInput = document.getElementById("movieDescription");
     this.#rateInput = document.getElementById("movieRate");
+
     this.#errorAlert = document.getElementById("movieAlertInputError");
 
     this.#addButton = document.getElementById("addNewMovieButton");
@@ -33,7 +30,7 @@ export default class AddMovieView {
 
     this.#modal = new bootstrap.Modal(rawModal);
 
-    this.#toast = new MovieToastNotificationComponent();
+    this.#saveStrategy = null;
   }
 
   #validInputs() {
@@ -53,19 +50,31 @@ export default class AddMovieView {
     return true;
   }
 
+  setSaveStrategy(saveStrategy) {
+    this.#saveStrategy = saveStrategy;
+  }
+
   #addMovie() {
     if (!this.#validInputs()) return;
 
-    this.#movieViewModelSubject.addMovie(
+    if (!this.#saveStrategy) throw Error("Save strategy function not set");
+
+    this.#saveStrategy(
       this.#titleInput.value,
       this.#imageURLInput.value,
       this.#descriptionInput.value,
       this.#rateInput.value
     );
 
-    this.#modal.hide();
+    this.closeModal();
+  }
 
-    this.#showToastNotification();
+  openModal() {
+    this.#modal.show();
+  }
+
+  closeModal() {
+    this.#modal.hide();
   }
 
   #clearInputs() {
@@ -82,13 +91,5 @@ export default class AddMovieView {
 
   #hideInputError() {
     this.#errorAlert.hidden = true;
-  }
-
-  #showToastNotification() {
-    this.#toast.show();
-  }
-
-  update() {
-    console.log("MovieViewModel update received in AddMovieView");
   }
 }

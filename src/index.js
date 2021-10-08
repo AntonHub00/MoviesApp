@@ -1,13 +1,19 @@
 import "bootstrap"; // Bootstrap JS
 import "./styles/index.scss"; // Bootstrap CSS
 import MovieViewModel from "./js/movies/MovieViewModel";
-import AddMovieView from "./js/movies/AddMovieView";
 import CardsView from "./js/movies/CardsView";
+import MovieModalComponent from "./js/movies/components/MovieModalComponent";
+import AddMovieButtonView from "./js/movies/AddMovieButtonView";
+
+const movieModalComponent = new MovieModalComponent();
 
 const movieViewModel = new MovieViewModel();
 
-const addMovieView = new AddMovieView(movieViewModel);
-const movieCardContainerView = new CardsView(movieViewModel);
+const cardsView = new CardsView(movieViewModel);
+const addMovieButtonView = new AddMovieButtonView(
+  movieViewModel,
+  movieModalComponent
+);
 
-movieViewModel.attach(addMovieView);
-movieViewModel.attach(movieCardContainerView);
+movieViewModel.attach(cardsView);
+movieViewModel.attach(addMovieButtonView);
