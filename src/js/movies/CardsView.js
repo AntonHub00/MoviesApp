@@ -3,9 +3,11 @@ import MovieCardComponent from "./components/MovieCardComponent";
 export default class CardsView {
   #movieViewModelSubject;
   #cardContainer;
+  #movieModalComponent;
 
-  constructor(movieViewModelSubject) {
+  constructor(movieViewModelSubject, movieModalComponent) {
     this.#movieViewModelSubject = movieViewModelSubject;
+    this.#movieModalComponent = movieModalComponent;
 
     this.#cardContainer = document.getElementById("cardsContainer");
 
@@ -14,6 +16,7 @@ export default class CardsView {
     // are executed with the context of this class (as if the other components
     // were an object of this class).
     this.removeCard = this.removeCard.bind(this);
+    this.editCard = this.editCard.bind(this);
   }
 
   #renderCards() {
@@ -36,7 +39,7 @@ export default class CardsView {
           description,
           rate,
           isLastInserted,
-          () => console.log("Should edit card"),
+          this.editCard,
           this.removeCard
         ).build()
       );
@@ -47,6 +50,38 @@ export default class CardsView {
 
   removeCard(id) {
     this.#movieViewModelSubject.removeMovie(id);
+  }
+
+  editCard(id) {
+    // Data before edit
+    const currentMovie = this.#movieViewModelSubject.movieModelSubjects.find(
+      (movie) => movie.id == id
+    );
+
+    const currentMovieData = currentMovie.getValues();
+
+    this.#movieModalComponent.setInputs(
+      currentMovieData.title,
+      currentMovieData.imageURL,
+      currentMovieData.description,
+      currentMovieData.rate
+    );
+
+    // Data after edit
+    this.#movieModalComponent.setConfig(
+      (title, imageURL, description, rate) =>
+        this.#movieViewModelSubject.updateMovie(
+          id,
+          title,
+          imageURL,
+          description,
+          rate
+        ),
+      "Edit movie",
+      "Save"
+    );
+
+    this.#movieModalComponent.openModal();
   }
 
   update() {

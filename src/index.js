@@ -9,7 +9,7 @@ const movieModalComponent = new MovieModalComponent();
 
 const movieViewModel = new MovieViewModel();
 
-const cardsView = new CardsView(movieViewModel);
+const cardsView = new CardsView(movieViewModel, movieModalComponent);
 const addMovieButtonView = new AddMovieButtonView(
   movieViewModel,
   movieModalComponent

@@ -1,7 +1,3 @@
-// This class also a observer, so this class MUST implement the following
-// methods:
-// - update(): void
-
 import * as bootstrap from "bootstrap"; // Bootstrap JS
 
 export default class MovieModalComponent {
@@ -11,6 +7,7 @@ export default class MovieModalComponent {
   #descriptionInput;
   #rateInput;
   #errorAlert;
+  #rawModal;
   #modal;
   #saveStrategy;
 
@@ -25,12 +22,40 @@ export default class MovieModalComponent {
     this.#addButton = document.getElementById("addNewMovieButton");
     this.#addButton.onclick = () => this.#addMovie();
 
-    const rawModal = document.getElementById("newMovie");
-    rawModal.addEventListener("hidden.bs.modal", () => this.#clearInputs());
+    this.#rawModal = document.getElementById("newMovie");
+    this.#rawModal.addEventListener("hidden.bs.modal", () =>
+      this.#clearInputs()
+    );
 
-    this.#modal = new bootstrap.Modal(rawModal);
+    this.#modal = new bootstrap.Modal(this.#rawModal);
 
     this.#saveStrategy = null;
+  }
+
+  #setSaveStrategy(saveStrategy) {
+    this.#saveStrategy = saveStrategy;
+  }
+
+  #setTitle(title) {
+    const modalTitle = this.#rawModal.querySelector(".modal-title");
+    modalTitle.textContent = title;
+  }
+
+  #setSaveButtonText(text) {
+    this.#addButton.textContent = text;
+  }
+
+  setConfig(saveStrategy, title, buttonText) {
+    this.#setSaveStrategy(saveStrategy);
+    this.#setTitle(title);
+    this.#setSaveButtonText(buttonText);
+  }
+
+  setInputs(title, imageURL, description, rate) {
+    this.#titleInput.value = title;
+    this.#imageURLInput.value = imageURL;
+    this.#descriptionInput.value = description;
+    this.#rateInput.value = rate;
   }
 
   #validInputs() {
@@ -48,10 +73,6 @@ export default class MovieModalComponent {
 
     this.#hideInputError();
     return true;
-  }
-
-  setSaveStrategy(saveStrategy) {
-    this.#saveStrategy = saveStrategy;
   }
 
   #addMovie() {

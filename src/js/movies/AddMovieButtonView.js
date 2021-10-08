@@ -21,8 +21,7 @@ export default class AddMovieButtonView {
   }
 
   #setModal() {
-    this.#movieModalComponent.setSaveStrategy(this.addMovie);
-
+    this.#movieModalComponent.setConfig(this.addMovie, "New movie", "Add");
     this.#movieModalComponent.openModal();
   }
 
