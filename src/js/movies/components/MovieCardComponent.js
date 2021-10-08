@@ -64,10 +64,10 @@ export default class MovieCardComponent {
   }
 
   #setRemoveButton() {
-    const editButton =
+    const removeButton =
       this.#queryCardInnerElement(".float-end").lastElementChild;
 
-    editButton.onclick = () => this.#removeCallback(this.#id);
+    removeButton.onclick = () => this.#removeCallback(this.#id);
   }
 
   #setLastBadge() {
