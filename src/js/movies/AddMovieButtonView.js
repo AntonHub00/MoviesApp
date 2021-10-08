@@ -2,13 +2,19 @@
 // methods:
 // - update(): void
 
+import MovieToastNotificationComponent from "./components/MovieToastNotificationComponent";
+
 export default class AddMovieButtonView {
   #movieViewModelSubject;
   #movieModalComponent;
+  #movieToastNotificationComponent;
 
   constructor(movieViewModelSubject, movieModalComponent) {
     this.#movieViewModelSubject = movieViewModelSubject;
     this.#movieModalComponent = movieModalComponent;
+
+    this.#movieToastNotificationComponent =
+      new MovieToastNotificationComponent();
 
     const button = document.getElementById("newMovieButton");
     button.onclick = () => this.#setModal();
@@ -27,6 +33,7 @@ export default class AddMovieButtonView {
 
   addMovie(title, imageURL, description, rate) {
     this.#movieViewModelSubject.addMovie(title, imageURL, description, rate);
+    this.#movieToastNotificationComponent.show();
   }
 
   update() {

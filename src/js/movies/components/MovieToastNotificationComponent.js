@@ -1,6 +1,6 @@
 import * as bootstrap from "bootstrap"; // Bootstrap JS
 
-export default class toastNofiticationView {
+export default class MovieToastNofiticationComponent {
   #toastNofitication;
 
   constructor() {
