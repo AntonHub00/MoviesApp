@@ -8,6 +8,12 @@ export default class CardsView {
     this.#movieViewModelSubject = movieViewModelSubject;
 
     this.#cardContainer = document.getElementById("cardsContainer");
+
+    // ### Bindings! ###
+    // These are required so the functions passed to other components/objects
+    // are executed with the context of this class (as if the other components
+    // were an object of this class).
+    this.removeCard = this.removeCard.bind(this);
   }
 
   #renderCards() {
@@ -31,7 +37,7 @@ export default class CardsView {
           rate,
           isLastInserted,
           () => console.log("Should edit card"),
-          () => console.log("Should remove card")
+          this.removeCard
         ).build()
       );
     });
@@ -39,9 +45,12 @@ export default class CardsView {
     this.#cardContainer.appendChild(cardsFragment);
   }
 
-  #deleteCard() {}
+  removeCard(id) {
+    this.#movieViewModelSubject.removeMovie(id);
+  }
 
   update() {
     this.#renderCards();
+    console.log("MovieViewModel update received in CardsView");
   }
 }

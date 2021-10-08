@@ -60,16 +60,14 @@ export default class MovieCardComponent {
     const editButton =
       this.#queryCardInnerElement(".float-end").firstElementChild;
 
-    editButton.id = this.#id;
-    editButton.onclick = this.#editCallback;
+    editButton.onclick = () => this.#editCallback(this.#id);
   }
 
   #setRemoveButton() {
     const editButton =
       this.#queryCardInnerElement(".float-end").lastElementChild;
 
-    editButton.id = this.#id;
-    editButton.onclick = this.#removeCallback;
+    editButton.onclick = () => this.#removeCallback(this.#id);
   }
 
   #setLastBadge() {

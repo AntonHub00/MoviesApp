@@ -21,6 +21,10 @@ export default class MovieModel {
     this.#movieModelObservers = [];
   }
 
+  get id() {
+    return this.#id;
+  }
+
   getValues() {
     return {
       id: this.#id,
