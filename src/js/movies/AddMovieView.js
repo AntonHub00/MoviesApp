@@ -28,7 +28,10 @@ export default class AddMovieView {
     this.#addButton = document.getElementById("addNewMovieButton");
     this.#addButton.onclick = () => this.#addMovie();
 
-    this.#modal = new bootstrap.Modal(document.getElementById("newMovie"));
+    const rawModal = document.getElementById("newMovie");
+    rawModal.addEventListener("hidden.bs.modal", () => this.#clearInputs());
+
+    this.#modal = new bootstrap.Modal(rawModal);
 
     this.#toast = new MovieToastNotificationComponent();
   }
@@ -60,8 +63,7 @@ export default class AddMovieView {
       this.#rateInput.value
     );
 
-    this.#modal.toggle();
-    this.#clearInputs();
+    this.#modal.hide();
 
     this.#showToastNotification();
   }
