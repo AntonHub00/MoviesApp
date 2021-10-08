@@ -13,7 +13,7 @@ Bootstrap.
 npm install
 ```
 
-2. Run the project with the webpack dev server (port 8080):
+2. Run the project with the webpack dev server (localhost on port 8080):
 
 ```bash
 npm run start
