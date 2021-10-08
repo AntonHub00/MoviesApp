@@ -17,6 +17,8 @@ export default class CardsView {
     // were an object of this class).
     this.removeCard = this.removeCard.bind(this);
     this.editCard = this.editCard.bind(this);
+
+    this.#renderCards();
   }
 
   #renderCards() {

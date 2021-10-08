@@ -12,10 +12,14 @@ import MovieModel from "./MovieModel";
 
 export default class MovieViewModel {
   #movieViewModelObservers;
+  #localStorageId;
 
   constructor() {
     this.movieModelSubjects = [];
     this.#movieViewModelObservers = [];
+    this.#localStorageId = "moviesDataList";
+
+    this.#restoreState();
   }
 
   addMovie(title, imageURL, description, rate) {
@@ -23,7 +27,7 @@ export default class MovieViewModel {
     const id = uuidv4();
 
     const newMovie = new MovieModel(id, title, imageURL, description, rate);
-    newMovie.attach(this);
+    newMovie.attach(this); // Notify me if this model change
 
     // A new item is inserted at the begining.
     this.movieModelSubjects = [newMovie, ...this.movieModelSubjects];
@@ -63,6 +67,31 @@ export default class MovieViewModel {
     // Tell the Views that the ViewModel has changed
     this.#movieViewModelObservers.forEach((movieViewModelObserver) =>
       movieViewModelObserver.update()
+    );
+
+    this.#saveState();
+  }
+
+  #saveState() {
+    const moviesDataList = this.movieModelSubjects.map((movie) =>
+      movie.getValues()
+    );
+
+    const moviesDataListString = JSON.stringify(moviesDataList);
+
+    localStorage.setItem(this.#localStorageId, moviesDataListString);
+  }
+
+  #restoreState() {
+    const moviesDataListString = localStorage.getItem(this.#localStorageId);
+
+    if (!moviesDataListString) return;
+
+    const moviesDataList = JSON.parse(moviesDataListString);
+    moviesDataList.reverse();
+
+    moviesDataList.forEach(({ title, imageURL, description, rate }) =>
+      this.addMovie(title, imageURL, description, rate)
     );
   }
 
