@@ -148,5 +148,63 @@
         <div class="toast-body">New movie added!</div>
       </div>
     </div>
+
+    <!-- Templates -->
+
+    <!-- Card template -->
+    <template id="movieCardTemplate">
+      <div class="col-12 col-md-6 col-lg-4 col-xxl-3">
+        <div class="card" style="min-width: 300px">
+          <!-- "Last" badge -->
+          <img src="" class="card-img-top" alt="Movie image" />
+          <div class="card-body">
+            <h5 class="card-title text-center"></h5>
+
+            <p class="card-text"></p>
+
+            <div class="mb-3">
+              <span class="align-middle">Rate: </span>
+              <!-- Rate icons -->
+            </div>
+
+            <div class="float-end">
+              <a id="" class="btn btn-dark">
+                <span class="material-icons-outlined align-middle">
+                  edit
+                </span></a
+              >
+              <a id="" class="btn btn-outline-dark">
+                <span class="material-icons-outlined align-middle">
+                  delete
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Rate icon template -->
+    <template id="rateIconTemplate">
+      <span class="material-icons-outlined align-middle"></span>
+    </template>
+
+    <!-- "Latest" badge template -->
+    <template id="lastBadgeTemplate">
+      <span
+        class="
+          position-absolute
+          top-0
+          start-100
+          translate-middle
+          badge
+          rounded-pill
+          bg-danger
+        "
+        style="z-index: 10"
+      >
+        Latest
+      </span>
+    </template>
   </body>
 </html>
